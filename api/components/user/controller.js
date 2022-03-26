@@ -17,25 +17,27 @@ module.exports = function(injectedStore){
     }
 
     async function upsert(body){ 
+        var regnew = false;//indica si el registro es nuevo(insert)  o es una edicion(update)
         const user = {
             name:body.name,
-            username:body.username
+            username:body.username,
         }
         if(body.id){
             user.id = body.id;
         }else{
-            user.id = nanoid();
+           user.id = nanoid();
+           regnew=true;
         }
 
         if(body.password || body.username){
-            await auth.upsert({
+            await auth.upsert({  
                 id:user.id,
                 username:user.username,
                 password:body.password
-            })
+            },regnew)
         }
 
-        return store.upsert(TABLA,user)
+        return store.upsert(TABLA,user,regnew)
     }
 
     return {
