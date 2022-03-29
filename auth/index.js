@@ -21,6 +21,11 @@ const check = {
             throw error('No tienes permiso para esta acción',401);
         }
     },
+    logged: function(req,owner){ 
+        const decoded = decodeHeader(req);
+        
+        
+    },
 
 }
 
