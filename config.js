@@ -11,5 +11,10 @@ module.exports = {
         password: process.env.MYSQL_PASS || '',
         database: process.env.MYSQL_DB || 'db_cursonodemicroservs',
         port: process.env.MYSQL_PORT || '3307',
+    },
+    mysqlService:{
+        host: process.env.MYSQL_SVR_HOST || 'localhost',
+        port: process.env.MYSQL_SVR_PORT || 3001,
     }
+
 }
